@@ -77,3 +77,82 @@ const calc = (value: number, cb:(number) => void):void => {
 }
 
 calc(30, (result: number) => console.log(`result is ${result}`))
+
+const added = (a:number): (number) => number => (b:number): number => a + b
+const result = added(1)(2)
+console.log(result)
+
+console.log("++++++++++++++++++++++++++++")
+
+type NumberToNumFunc = (number: number)=> number
+
+const addEasy = (a:number): NumberToNumFunc => {
+	const _add: NumberToNumFunc = (b : number):number => {
+		return a + b
+	}
+	return _add
+}
+
+let funcc: NumberToNumFunc = addEasy(1)
+let results = funcc(2)
+console.log(results)
+console.log(addEasy(3)(6))
+
+type Users = {name: string, age?: number}
+
+const makePerson = (name: string, age: number = 10):Users => {
+	const person = {name: name, age: age}
+	return person
+}
+
+console.log(makePerson("Ian"))
+console.log(makePerson("Jane", 29))
+console.log("++++++++++++++++++++++++++++")
+
+const makeObject = (key: string, value: string) => ({[key]: value})
+console.log(makeObject("Firstname", "Ian"))
+console.log(makeObject("Lastname", "Lee"))
+console.log("++++++++++++++++++++++++++++")
+
+type KeyValueType = {
+	[key:string] : string
+}
+
+const makeObj = (key : string, value:string):KeyValueType => ({[key] : value})
+
+console.log(makeObj("firstName", "Ian"))
+console.log(makeObj("lastName", "LEE"))
+
+class Foo {
+	value : number = 1
+	method : () => void = function (): void {
+		console.log(`value : ${this.value}`)
+	}
+}
+let foo = new Foo
+foo.method()
+
+class FooB {
+	constructor(public value : number = 1){}
+	method() : void {
+		console.log(`value: ${this.value}`)
+	}
+}
+
+let foob = new FooB(2)
+foob.method()
+
+class Bar {
+	static whoRU():string {
+		return "I'm class Bar !"
+	}
+}
+
+class _Bar {
+	static whoRU(): string {
+		return "I'm class _Bar"
+	}
+}
+
+console.log(Bar.whoRU())
+console.log(_Bar.whoRU())
