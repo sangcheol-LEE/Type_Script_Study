@@ -26,4 +26,19 @@ for(let i =0; i < numbers.length; i++) {
 
 let sampleArray: number[] = [1,2,3,4,5];
 let [first, second, third, ...rest] = sampleArray
-console.log(first, second, third, rest)
+console.log(first, second, third, rest);
+
+
+// for in 은 배열의 인덱스값을 순회한다.
+let names = ["Jack", "Jane", "Steve"];
+
+for(let index in names) {
+	const name = names[index];
+	console.log(`for in : [${index}] : ${name}`)
+}
+
+// for of 는 배열의 아이템값을 순회합니다.
+
+for(let name of names) {
+	console.log("for of : ",name)
+}
