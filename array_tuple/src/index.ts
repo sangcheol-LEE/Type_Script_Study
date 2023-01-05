@@ -1,3 +1,5 @@
+import {range} from "./utils/func";
+
 console.log("array start")
 
 let numArray : number[] = [1,2,3,4]
@@ -42,3 +44,44 @@ for(let index in names) {
 for(let name of names) {
 	console.log("for of : ",name)
 }
+
+const fold = <T>(array: T[], callback: (result: T,val: T) => T,initValue :T) => {
+	let result:T = initValue
+	for(let i = 0; i < array.length; ++i ){
+		const value = array[i]
+		result = callback(result, value)
+	}
+	return result
+}
+
+let numberss: number[] = range(1, 100 + 1)
+let result = fold(numberss, (result, value) => result + value,0)
+console.log(result)
+
+// filter method
+const sampleArr: number[] = range(1, 10 + 1);
+const half:number = sampleArr.length / 2;
+
+let odds: number[] = sampleArr.filter((value) => value % 2 !== 0)
+let evens: number[] = sampleArr.filter((value) => value % 2 === 0)
+
+console.log(odds, evens)
+
+let belowHalf:number[] = sampleArr.filter((v, index) => index < half)
+let overHalf: number[] = sampleArr.filter((v, index) => index >= half)
+
+console.log(belowHalf, overHalf)
+
+// map method
+let squre : number[] = range(1, 5 + 1).map((val:number) => val * val)
+console.log(squre)
+
+let namez: string[] = range(1, 5 + 1).map((val:number, index:number) => `[${index}] : ${val}`)
+console.log(namez)
+
+// reduce method
+let reduceSum: number = range(1, 100 + 1).reduce((result: number, value: number) => result + value, 0)
+console.log(reduceSum)
+
+let reduceS : number = range(1, 10 + 1).reduce((result: number, value: number) => result * value, 1)
+console.log(reduceS)
